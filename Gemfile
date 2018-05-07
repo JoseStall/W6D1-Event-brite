@@ -5,6 +5,7 @@ gem 'devise'
 #gem 'pundit'
 ruby '2.3.4'
 
+gem 'stripe'
 gem 'rails'
 gem 'puma'
 gem 'sass-rails'
