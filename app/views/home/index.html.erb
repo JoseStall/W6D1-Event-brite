@@ -1,2 +1,101 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<% unless user_signed_in? %>
+<section>
+	<div class="container">
+		<h2>Log in</h2>
+
+		<%= form_for(:user, :url => session_path(:user)) do |f| %>
+		<%= f.text_field :email %>
+		<%= f.password_field :password %>
+		<%= f.check_box :remember_me %>
+		<%= f.label :remember_me %>
+		<%= f.submit 'Sign in' %>
+		<%= link_to "Forgot your password?", new_password_path(:user) %>
+		<% end %>
+
+	</div>
+</section>
+<% else %>
+<section>
+	<div class="container">
+		<h1>Liste des événements</h1>
+
+		<div class='row'>
+			<div class="bg-light mt-1 p-5 col-lg-8">
+				<table class="table table-hover table-dark-ligth">
+					<thead>
+						<tr>
+							<th scope="col"><span class="fi-media-play"></span>#</th>
+							<th scope="col">Event :</th>
+							<th scope="col">Date :</th>
+							<th scope="col">Place :</th>
+							<th scope="col">Prix :</th>
+							<th scope="col">Crée par :</th>
+							<th scope="col">Nb de participants :</th>
+							<th scope="col">Voir l'event :</th>
+
+
+						</tr>
+					</thead>
+					<% @events.each do |t| %>
+					<tbody>
+						<th> <%= t.id %></th>
+						<th> <%= t.description %></th>								
+						<th> <%= t.date.strftime('%a %d %b %Y')  %></th>
+						<th> <%= t.place %></th>
+						<th> <%= t.price %></th>
+						<th> <%= @users.find(t.creator_id).username %></th>
+
+						<th> <%= t.users.count %></th>
+						<th><%= link_to 'show', event_path(t.id), class: 'btn btn-primary' %> </th>
+
+					</tbody>
+					<% end %>
+				</table>
+			</div>
+		</div>
+	</section>
+	<section>
+	<div class="container">
+		<div>Voici la liste des événements auquel tu participes :</div>
+
+		<div class='row'>
+			<div class="bg-light mt-1 p-5 col-lg-8">
+				<table class="table table-hover table-dark-ligth">
+					<thead>
+						<tr>
+							<th scope="col"><span class="fi-media-play"></span>#</th>
+							<th scope="col">Event :</th>
+							<th scope="col">Date :</th>
+							<th scope="col">Place :</th>
+							<th scope="col">Prix :</th>
+							<th scope="col">Crée par :</th>
+							<th scope="col">NB de participants :</th>
+							<th scope="col">Voir l'event :</th>
+							
+
+						</tr>
+					</thead>
+					<% @attendees.each do |t| %>
+					<tbody>
+						<th> <%= t.id %></th>
+						<th> <%= t.description %></th>								
+						<th> <%= t.date %></th>
+						<th> <%= t.place %></th>
+						<th> <%= t.price %></th>
+						<th> <%= @users.find(t.creator_id).username %></th>
+						<th> <%= t.users.count %></th>
+						<th><%= link_to 'show', event_path(t.id), class: 'btn btn-primary' %> </th>
+
+					</tbody>
+					<% end %>
+				</table>
+			</div>
+		</div>
+	</section>
+	<div class="container">
+		<%=link_to 'Crer un nouvel event', new_event_path , class: 'btn btn-primary' %> 
+	</div>
+	<% end %>
+
+
+

@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_07_074937) do
+ActiveRecord::Schema.define(version: 2018_05_07_095055) do
+
+  create_table "events", force: :cascade do |t|
+    t.text "description"
+    t.datetime "date"
+    t.string "place"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "creator_id"
+    t.index ["creator_id"], name: "index_events_on_creator_id"
+  end
+
+  create_table "events_users", id: false, force: :cascade do |t|
+    t.integer "event_id", null: false
+    t.integer "user_id", null: false
+    t.index ["event_id", "user_id"], name: "index_events_users_on_event_id_and_user_id"
+    t.index ["user_id", "event_id"], name: "index_events_users_on_user_id_and_event_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +43,7 @@ ActiveRecord::Schema.define(version: 2018_05_07_074937) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

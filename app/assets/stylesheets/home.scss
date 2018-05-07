@@ -1,3 +1,15 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$height-footer : 50px;
+
+footer {
+	width: 100%;
+	height: $height-footer;
+	position: fixed;
+	bottom: 0;
+	p {
+		text-align: center;
+		line-height: $height-footer;
+	}
+}

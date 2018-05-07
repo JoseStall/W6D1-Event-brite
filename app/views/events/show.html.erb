@@ -1,0 +1,49 @@
+<div class='row'>
+	<div class="bg-light mt-1 p-5 col-lg-8">
+		<table class="table table-hover table-dark-ligth">
+			<thead>
+				<tr>
+					<th scope="col"><span class="fi-media-play"></span>#</th>
+					<th scope="col">Evénement :</th>
+					<th scope="col">Date :</th>
+					<th scope="col">Lieu :</th>
+					<th scope="col">Créateur :</th>
+					<th scope="col">Participer :</th>
+				</tr>
+			</thead>
+			<tbody>
+				<th > <%= @event.id %></th>
+				<th > <%= @event.description %></th>
+				<th > <%= @event.date %></th>
+				<th > <%= @event.place %></th>
+				<th> <%= @user.find(@event.creator_id).username %></th>
+				<th><% if current_user.events.ids.exclude?(@event.id)  %> <%= link_to 'Participer', edit_event_path(@event.id), class: 'btn btn-success' %> <% else %> <%= link_to 'Tu participes déjà', edit_event_path(@event.id), class: 'btn btn-success disabled' %> <% end %></th>
+			</tbody>
+		</table>
+	</div>
+</div>
+<h2>Liste</h2>
+<div class='row'>
+	<div class="bg-light mt-1 p-5 col-lg-8">
+		<table class="table table-hover table-dark-ligth">
+			<thead>
+				<tr>
+					<th scope="col"><span class="fi-media-play"></span>#</th>
+					<th scope="col">Participants :</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @b.each do |u| %>
+				<tr>
+					<th > <%= u.id %></th>
+					<th > <%= u.username %></th>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+
