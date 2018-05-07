@@ -36,7 +36,7 @@
 
 						</tr>
 					</thead>
-					<% @events.each do |t| %>
+					<% @events.order(:date).each do |t| %>
 					<tbody>
 						<th> <%= t.id %></th>
 						<th> <%= t.description %></th>								
@@ -75,7 +75,7 @@
 
 						</tr>
 					</thead>
-					<% @attendees.each do |t| %>
+					<% @attendees.order(:date).each do |t| %>
 					<tbody>
 						<th> <%= t.id %></th>
 						<th> <%= t.description %></th>								
@@ -96,6 +96,8 @@
 		<%=link_to 'Crer un nouvel event', new_event_path , class: 'btn btn-primary' %> 
 	</div>
 	<% end %>
+
+
 
 
 
