@@ -23,13 +23,6 @@ ActiveRecord::Schema.define(version: 2018_05_07_095055) do
     t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
-  create_table "events_users", id: false, force: :cascade do |t|
-    t.integer "event_id", null: false
-    t.integer "user_id", null: false
-    t.index ["event_id", "user_id"], name: "index_events_users_on_event_id_and_user_id"
-    t.index ["user_id", "event_id"], name: "index_events_users_on_user_id_and_event_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
