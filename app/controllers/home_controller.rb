@@ -4,6 +4,8 @@ class HomeController < ApplicationController
   	@users = User.all
   	if user_signed_in?
     	@attendees = current_user.events
-	end
+	else
+		@attendees
+  	end
   end
 end
