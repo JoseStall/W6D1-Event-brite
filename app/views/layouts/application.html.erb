@@ -21,33 +21,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <a class="navbar-brand" href="/">Accueil</a>
-          <a class="navbar-brand" href="#">Link</a>
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <a class="navbar-brand" href="/events">Les Events</a>
+          <ul class="navbar-nav navbar-right">
             <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to 'Deconnecte toi', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            <li>
+              <%= link_to 'Mon profil', edit_user_registration_path, class: 'nav-link' %>
             </li> 
-            <li class="nav-item">
-              <%= link_to current_user.username, edit_user_registration_path, class: 'nav-link' %>
-              
+            <li>
+              <%= link_to 'Deconnecte toi', destroy_user_session_path, method: :delete, class: 'nav-link' %>
             </li>
             <% else %>
-            <li class="nav-item">
-              <%= link_to 'Enregistre toi', new_user_session_path, class: 'nav-link' %>
+            <li>
+              <%= link_to 'Connexion', new_user_session_path, class: 'nav-link' %>
             </li>
-            <li class="nav-item">
-              <%= link_to 'Crée toi un compte', new_user_registration_path, class: 'nav-link' %>
+            <li>
+              <%= link_to 'Créer un compte', new_user_registration_path, class: 'nav-link' %>
             </li>
             <% end %>
           </ul>
         </div>
       </nav>
     </div>
-    <div><%= flash[:error] %></div>
-      <div><%= flash[:succes] %></div>
 
   </header>
-
+  <div><%= flash[:error] %></div>
+  <div><%= flash[:succes] %></div>
     <%= yield %>
   <footer>
     <div class="container">
