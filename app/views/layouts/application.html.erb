@@ -43,7 +43,11 @@
         </div>
       </nav>
     </div>
+    <div><%= flash[:error] %></div>
+      <div><%= flash[:succes] %></div>
+
   </header>
+
     <%= yield %>
   <footer>
     <div class="container">

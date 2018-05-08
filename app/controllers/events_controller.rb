@@ -25,25 +25,30 @@ class EventsController < ApplicationController
   def edit
     a = Event.find(params[:id])
     b = User.find(current_user.id)
-    a.users << b
-    redirect_to root_path
 
-    @amount = @a.price
-
+    if a.users.include? current_user
+      redirect_to root_path
+      flash[:error] = "Vous participez déja à l'évenement !"
+    end
+    @amount = a.price
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :source  => params[:stripeToken]
       )
-
     charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @amount,
-      :description => 'Rails Stripe customer',
+      :description => 'Payer',
       :currency    => 'eur'
       )
+    a.users << b
+    flash[:success] = 'Votre paiement a bien été pris en compte'
+    redirect_to root_path
+
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to new_charge_path
 
-  end
+
+  end  
+end
