@@ -13,6 +13,11 @@ class EventsController < ApplicationController
     @event =Event.new
   end
 
+  def index
+    @events = Event.all
+    @users = User.all
+  end
+
   def create
     Event.create(:description => params[:event][:description], :date => params[:event][:date], :place => params[:event][:place], :price => params[:event][:price], :creator_id => current_user.id)
     @event = Event.last
@@ -40,15 +45,15 @@ class EventsController < ApplicationController
       redirect_to root_path
       flash[:error] = "Vous participez déja à l'évenement !"
     end
-    @amount = a.price
+    @amount = a.price * 100
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :source  => params[:stripeToken]
       )
     charge = Stripe::Charge.create(
       :customer    => customer.id,
-      :amount      => @amount,
-      :description => 'Payer',
+      :amount      => @amount ,
+      :description => '#{amount}',
       :currency    => 'eur'
       )
     a.users << b

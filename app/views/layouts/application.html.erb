@@ -21,8 +21,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <a class="navbar-brand" href="/">Accueil</a>
+
           <a class="navbar-brand" href="/events">Les Events</a>
           <ul class="navbar-nav navbar-right">
+
             <% if user_signed_in? %>
             <li>
               <%= link_to 'Mon profil', edit_user_registration_path, class: 'nav-link' %>

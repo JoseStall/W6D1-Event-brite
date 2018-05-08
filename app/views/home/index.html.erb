@@ -3,21 +3,21 @@
 	<div class="container">
 		<h1>Connexion</h1>
 		<%= form_for(:user, :url => session_path(:user)) do |f| %>
-			<div class="form-group">
-				<%= f.label :email %>:
-				<%= f.text_field :email, class: "form-control" %>
-			</div>
-			<div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
-				<%= f.label :password %>:
-				<%= f.password_field :password, class: "form-control" %>
-			</div>
-			<div class="form-check">
-				<%= f.check_box :remember_me, class: "form-check-input" %>
-				<%= f.label :remember_me, class: "form-check-label" %>
-			</div>
-			<%= f.submit 'Sign in', class: "btn btn-primary btn-connexion" %>
-			<%= link_to "Forgot your password?", new_password_path(:user) %>
+		<div class="form-group">
+			<%= f.label :email %>:
+			<%= f.text_field :email, class: "form-control" %>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">Password</label>
+			<%= f.label :password %>:
+			<%= f.password_field :password, class: "form-control" %>
+		</div>
+		<div class="form-check">
+			<%= f.check_box :remember_me, class: "form-check-input" %>
+			<%= f.label :remember_me, class: "form-check-label" %>
+		</div>
+		<%= f.submit 'Sign in', class: "btn btn-primary btn-connexion" %>
+		<%= link_to "Forgot your password?", new_password_path(:user) %>
 
 		<% end %>
 	</div>
@@ -61,45 +61,53 @@
 		</div> 
 	</section>
 	<section>
-	<div class="container">
-		<h1>Liste des événements auquel tu participes</h1>
+		<div class="container">
+			<h1>Liste des événements auquel tu participes</h1>
 
-		<div class="table-responsive">
-			<table class="table table-hover table-dark-ligth">
-				<thead>
-					<tr>
-						<th scope="col"><span class="fi-media-play"></span>#</th>
-						<th scope="col">Event :</th>
-						<th scope="col">Date :</th>
-						<th scope="col">Place :</th>
-						<th scope="col">Prix :</th>
-						<th scope="col">Crée par :</th>
-						<th scope="col">NB de participants :</th>
-						<th scope="col">Voir l'event :</th>
+			<div class="table-responsive">
+				<table class="table table-hover table-dark-ligth">
+					<thead>
+						<tr>
+							<th scope="col"><span class="fi-media-play"></span>#</th>
+							<th scope="col">Event :</th>
+							<th scope="col">Date :</th>
+							<th scope="col">Place :</th>
+							<th scope="col">Prix :</th>
+							<th scope="col">Crée par :</th>
+							<th scope="col">NB de participants :</th>
+							<th scope="col">Voir l'event :</th>
 
 
-					</tr>
-				</thead>
-				<% @attendees.order(:date).each do |t| %>
-				<tbody>
-					<th> <%= t.id %></th>
-					<th> <%= t.description %></th>								
-					<th> <%= t.date %></th>
-					<th> <%= t.place %></th>
-					<th> <%= t.price %></th>
-					<th> <%= @users.find(t.creator_id).username %></th>
-					<th> <%= t.users.count %></th>
-					<th><%= link_to 'show', event_path(t.id), class: 'btn btn-primary' %> </th>
+						</tr>
+					</thead>
+					<% @attendees.order(:date).each do |t| %>
+					<tbody>
+						<th> <%= t.id %></th>
+						<th> <%= t.description %></th>								
+						<th> <%= t.date %></th>
+						<th> <%= t.place %></th>
+						<th> <%= t.price %></th>
+						<th> <%= @users.find(t.creator_id).username %></th>
+						<th> <%= t.users.count %></th>
+						<th><%= link_to 'show', event_path(t.id), class: 'btn btn-primary' %> </th>
 
-				</tbody>
-				<% end %>
-			</table>
-		</div>
-	</section>
-	<div class="container">
-		<%=link_to 'Créer un nouvel event', new_event_path , class: 'btn btn-primary' %> 
-	</div>
-	<% end %>
+					</tbody>
+					<% end %>
+				</table>
+			</div>
+		</section>
+		<section>
+			<div class="container">
+				<div class="table-responsive">
+					<table class="table table-hover table-dark-ligth">
+						<%=link_to 'Créer un nouvel event', new_event_path , class: 'btn btn-primary' %> 
+					</table>
+				</div>
+			</div>
+		</section>
+
+		<% end %>
+
 
 
 
