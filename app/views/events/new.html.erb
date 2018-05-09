@@ -1,21 +1,26 @@
-<div class='row'>
-	<div class="bg-light mt-1 p-5 col-lg-8">
-
-		
-			
-					
-					<%= form_for @event, url: {action: "create"} do |f| %> 
-					<%= f.label :description %>
-					<%= f.text_field :description %>
-					<%= f.label :date %>
-					<%= f.date_field :date %>
-					<%= f.label :place %>
-					<%= f.text_field :place %>
-					<%= f.label :price %>
-					<%= f.text_field :price %>
-					<%= f.submit "Create" %>
-					<% end %>
-		
-		
+<section>
+	<div class="container">
+		<h1>Créer un événement</h1>
+		<%= form_for @event, url: {action: "create"} do |f| %>
+		<div class="form-group">
+		<%= f.label :description %>
+		<%= f.text_field :description, class: "form-control" %>
+		</div>
+		<div class="form-group">
+		<%= f.label :date %>
+		<%= f.date_field :date, class: "form-control" %>
+		</div>
+		<div class="form-group">
+		<%= f.label :place %>
+		<%= f.text_field :place, class: "form-control" %>
+		</div>
+		<div class="form-group">
+		<%= f.label :price %>
+		<%= f.number_field :price, class: "form-control" %>
+		</div>
+		<div class="form-group">
+		<%= f.submit "Créer", class: "btn btn-primary" %>
+		</div>
+		<% end %>
 	</div>
-</div>
+</section>
