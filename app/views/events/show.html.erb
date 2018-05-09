@@ -21,6 +21,7 @@
 					<th> <%= @user.find(@event.creator_id).username %></th>
 					<% if Time.now > @event.date  %>
 					<th><%= 'Vous ne pouvez pas participer à un évent passé' %></th>
+					
 					<% else %> 
 
 					<th><%= form_tag edit_event_path do %>
