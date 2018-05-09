@@ -21,6 +21,9 @@
 					<th> <%= @user.find(@event.creator_id).username %></th>
 					<% if Time.now > @event.date  %>
 					<th><%= 'Vous ne pouvez pas participer à un évent passé' %></th>
+					<%elsif @event.price == 0 %>
+					<th><%= link_to 'Participer', edit_event_path, class: 'btn btn-primary' %> </th>
+
 
 					<% else %> 
 

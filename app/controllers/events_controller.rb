@@ -46,9 +46,10 @@ class EventsController < ApplicationController
     a = Event.find(params[:id])
     b = User.find(current_user.id)
 
-    if a.users.include? current_user
-      redirect_to root_path
-      flash[:error] = "Vous participez déja à l'évenement !"
+    if a.price == 0
+     a.users << b
+     redirect_to root_path
+
     end
     @amount = a.price * 100
     customer = Stripe::Customer.create(
