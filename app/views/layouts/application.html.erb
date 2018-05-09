@@ -1,54 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>EventBriteDevise</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>EventBriteDevise</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-WuViQmTamrPyvMFZjf8te7HpKtdxuzV/HX1yG26a0d8yieIBr+beDf1ME99iX1cM" crossorigin="anonymous">
 
-  </head>
+</head>
 
-  <body>
-    <header>
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href="/">Accueil</a>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="/">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-          <a class="navbar-brand" href="/events">Les Events</a>
-          <ul class="navbar-nav navbar-right">
+      <div class="collapse navbar-collapse" id="navbarColor01">
 
-            <% if user_signed_in? %>
-            <li>
-              <%= link_to 'Mon profil', edit_user_registration_path, class: 'nav-link' %>
-            </li> 
-            <li>
-              <%= link_to 'Deconnecte toi', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-            </li>
-            <% else %>
-            <li>
-              <%= link_to 'Connexion', new_user_session_path, class: 'nav-link' %>
-            </li>
-            <li>
-              <%= link_to 'Créer un compte', new_user_registration_path, class: 'nav-link' %>
-            </li>
-            <% end %>
-          </ul>
-        </div>
-      </nav>
-    </div>
+        
+        <a class="navbar-brand" href="/">Accueil</a>
+
+        <a class="navbar-brand" href="/events">Les Events</a>
+        <ul class="navbar-nav navbar-right">
+
+          <% if user_signed_in? %>
+          <li>
+            <%= link_to 'Mon profil', edit_user_registration_path, class: 'nav-link' %>
+          </li> 
+          <li>
+            <%= link_to 'Deconnecte toi', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+          <% else %>
+          <li>
+            <%= link_to 'Connexion', new_user_session_path, class: 'nav-link' %>
+          </li>
+          <li>
+            <%= link_to 'Créer un compte', new_user_registration_path, class: 'nav-link' %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    
 
   </header>
   <div><%= flash[:error] %></div>
   <div><%= flash[:succes] %></div>
-    <%= yield %>
+  <%= yield %>
   <footer>
     <div class="container">
       <p>Made by Guillaume & Pierre</p>
@@ -57,5 +60,5 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-  </body>
+</body>
 </html>

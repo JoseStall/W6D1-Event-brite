@@ -21,7 +21,7 @@
 					<th> <%= @user.find(@event.creator_id).username %></th>
 					<% if Time.now > @event.date  %>
 					<th><%= 'Vous ne pouvez pas participer à un évent passé' %></th>
-					
+
 					<% else %> 
 
 					<th><%= form_tag edit_event_path do %>
@@ -43,7 +43,7 @@
 						<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 						data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
 						data-description="<%= @event.description %>"
-						data-amount="<%= @amount %>"
+						data-amount="<%= @event.price * 100 %>"
 						data-locale="auto"></script>
 						<% end %>
 						<% end %>

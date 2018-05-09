@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 
 	def new
     @event =Event.new
+    flash[:success] = "vous avez bien crée un event"
   end
 
   def index
@@ -21,12 +22,16 @@ class EventsController < ApplicationController
   def create
     Event.create(:description => params[:event][:description], :date => params[:event][:date], :place => params[:event][:place], :price => params[:event][:price], :creator_id => current_user.id)
     @event = Event.last
+        flash[:success] = "vous avez bien crée un event"
+
   end
 
   def show
     @event = Event.find(params[:id])
     @user = User.all
     @b = @event.users
+        flash[:success] = "vous avez bien crée un event"
+
 
   end
   def showid
